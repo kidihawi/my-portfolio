@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kidi Hawi | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5F9;--ink:#101A33;--muted:#4F5B78;--accent:#2F4BFF;--soft:#DDE3F3;--onaccent:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1424;--ink:#EEF1FA;--muted:#A3AECB;--accent:#7C90FF;--soft:#1E2846;--onaccent:#0E1424}}
+:root[data-theme="dark"]{--bg:#0E1424;--ink:#EEF1FA;--muted:#A3AECB;--accent:#7C90FF;--soft:#1E2846;--onaccent:#0E1424}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;line-height:1.65}
+main{max-width:980px;margin:0 auto;padding:clamp(24px,6vw,72px) clamp(20px,5vw,48px);display:grid;grid-template-columns:minmax(220px,340px) 1fr;gap:clamp(28px,6vw,72px);align-items:center;min-height:calc(100vh - 4rem);scroll-margin-top:4rem}
+.photo{position:relative;width:100%;aspect-ratio:4/5;border:0;padding:0;cursor:pointer;background:var(--soft);border-radius:999px 999px 20px 20px;overflow:hidden;display:block}
+.photo img{width:100%;height:100%;object-fit:cover;display:none}
+.photo.has img{display:block}
+.photo svg{position:absolute;inset:0;width:100%;height:100%;color:var(--accent)}
+.photo.has svg,.photo.has .hint{display:none}
+.hint{position:absolute;left:0;right:0;bottom:16px;text-align:center;font:500 .85rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+.photo:focus-visible,[contenteditable]:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+h1{font:700 clamp(2.6rem,7vw,4.8rem)/1 "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:-.03em;margin:0 0 .4em}
+.tag{font:500 clamp(1.05rem,2.4vw,1.35rem)/1.35 "Bricolage Grotesque",system-ui,sans-serif;color:var(--accent);margin:0 0 2.2rem}
+h2{font:700 1.15rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 .6rem;padding-left:.75rem;border-left:4px solid var(--accent)}
+.about p{margin:0;max-width:60ch;font-size:1.1rem;color:var(--ink)}
+.note{margin-top:2rem;font:.85rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--soft)}
+nav ul{list-style:none;margin:0 auto;padding:0 clamp(20px,5vw,48px);max-width:980px;height:4rem;display:flex;align-items:center;gap:1.75rem}
+nav a{font:500 1rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);text-decoration:none;padding:.4rem 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent);outline:none}
+.block{max-width:980px;margin:0 auto;padding:clamp(40px,8vw,88px) clamp(20px,5vw,48px);scroll-margin-top:4rem}
+.block>h2{font-size:1.6rem;margin-bottom:1.5rem}
+.project{padding:1.1rem 0;border-top:1px solid var(--soft);max-width:60ch}
+.project h3{font:700 1.2rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 .25rem}
+.project p,.contact p{margin:0;color:var(--muted)}
+.contact p{max-width:60ch;margin-bottom:.5rem;color:var(--ink)}
+.links{list-style:none;margin:0 0 1.5rem;padding:0}
+.links li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;border-top:1px solid var(--soft);max-width:60ch}
+.links span{flex:0 0 5.5rem;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+.links a{color:var(--accent);font-size:1.1rem;overflow-wrap:anywhere;text-underline-offset:4px}
+.links a:hover{color:var(--ink)}
+.links a:focus-visible,summary:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+details{max-width:60ch;font:.95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+summary{cursor:pointer;width:max-content}
+details label{display:block;margin-top:.8rem}
+details input{display:block;width:100%;margin-top:.25rem;padding:.55rem .7rem;font:inherit;color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:6px}
+details input:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+footer{max-width:980px;margin:0 auto;padding:1.5rem clamp(20px,5vw,48px) 2.5rem;border-top:1px solid var(--soft);font:.9rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--muted)}
+@media (max-width:720px){main{grid-template-columns:1fr;min-height:0}.photo{max-width:300px}}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <ul>
+    <li><a href="#home">Home</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+<main id="home">
+  <button class="photo" id="photoBtn" aria-label="Add or change your professional photo">
+    <img id="photoImg" alt="Portrait of Your Name">
+    <svg viewBox="0 0 200 250" fill="currentColor" aria-hidden="true"><circle cx="100" cy="100" r="38" opacity=".55"/><path d="M28 250c0-52 32-84 72-84s72 32 72 84z" opacity=".55"/></svg>
+    <span class="hint">Click to add your photo</span>
+  </button>
+  <input type="file" id="file" accept="image/*" hidden>
+
+  <section>
+    <h1 contenteditable="true" spellcheck="false" data-k="name">Kidi Hawi</h1>
+    <p class="tag" contenteditable="true" spellcheck="false" data-k="tag">Aspiring Web Developer &amp; BAC Student</p>
+    <div class="about">
+      <h2>About me</h2>
+      <p contenteditable="true" data-k="about">I'm a First-year BAC student at KCA University, studying for a Bachelor of Science in Applied Computing. I enjoy turning ideas into clean, usable websites and I'm learning HTML, CSS, JavaScript and databases. Outside class I like exploring new frameworks and working on small projects that solve everyday problems.</p>
+    </div>
+    
+  </section>
+</main>
+<section class="block" id="projects">
+  <h2>Projects</h2>
+  <div class="project"><h3 contenteditable="true" spellcheck="false" data-k="p1t">Personal portfolio website</h3><p contenteditable="true" data-k="p1d">A responsive site built with HTML, CSS and JavaScript to showcase my work.</p></div>
+  <div class="project"><h3 contenteditable="true" spellcheck="false" data-k="p2t">Project name</h3><p contenteditable="true" data-k="p2d">One line on what it does and the tools you used.</p></div>
+ 
+</section>
+<section class="block contact" id="contact">
+  <h2>Contact</h2>
+  <p contenteditable="true" data-k="cintro">I'm open to internships, collaborations and web projects. The best way to reach me is by email.</p>
+  <ul class="links">
+    <li><span>Email</span><a data-link="email" href="mailto:kidihawi@gmail.com">kidihawi@gmail.com</a></li>
+    <li><span>GitHub</span><a data-link="gh" href="https://github.com/kidihawi" target="_blank" rel="noopener">github.com/kidihawi</a></li>
+    <li><span>LinkedIn</span><a data-link="li" href="https://linkedin.com/in/kidi-hawi-b3a26b3b9/" target="_blank" rel="noopener">linkedin.com/in/kidi-hawi-b3a26b3b9/</a></li>
+  </ul>
+  
+</section>
+<footer>
+  <span>&copy; <span id="yr">2026 All Rights Reserved</span> <span id="fname"></span></span>
+  <a href="#home">Back to top</a>
+</footer>
+<script>
+(function(){
+  var store={};
+  try{store=JSON.parse(localStorage.getItem("portfolio")||"{}")}catch(e){}
+  function save(){try{localStorage.setItem("portfolio",JSON.stringify(store))}catch(e){}}
+  var btn=document.getElementById("photoBtn"),img=document.getElementById("photoImg"),file=document.getElementById("file");
+  function show(src){img.src=src;btn.classList.add("has")}
+  document.querySelectorAll("[data-k]").forEach(function(el){
+    var k=el.dataset.k;
+    if(store[k])el.textContent=store[k];
+    el.addEventListener("input",function(){store[k]=el.textContent;save()});
+  });
+  if(store.photo)show(store.photo);
+  var defs={email:"you@example.com",gh:"github.com/yourusername",li:"linkedin.com/in/yourname"};
+  function paint(k){
+    var v=(store["l_"+k]||defs[k]).trim(),a=document.querySelector('[data-link="'+k+'"]');
+    a.textContent=v.replace(/^https?:\/\//,"");
+    a.href=k==="email"?"mailto:"+v:(/^https?:\/\//.test(v)?v:"https://"+v);
+  }
+  Object.keys(defs).forEach(function(k){
+    var inp=document.querySelector('[data-in="'+k+'"]');
+    inp.value=store["l_"+k]||defs[k];
+    paint(k);
+    inp.addEventListener("input",function(){store["l_"+k]=inp.value||defs[k];paint(k);save()});
+  });
+  var nameEl=document.querySelector('[data-k="name"]'),fname=document.getElementById("fname");
+  function syncName(){fname.textContent=nameEl.textContent.trim()||"Your Name";document.title=fname.textContent+" | Portfolio"}
+  syncName();nameEl.addEventListener("input",syncName);
+  document.getElementById("yr").textContent=new Date().getFullYear();
+  btn.addEventListener("click",function(){file.click()});
+  file.addEventListener("change",function(){
+    var f=file.files[0];if(!f)return;
+    var r=new FileReader();
+    r.onload=function(){show(r.result);store.photo=r.result;save()};
+    r.readAsDataURL(f);
+  });
+})();
+</script>
+</body>
+</html>
