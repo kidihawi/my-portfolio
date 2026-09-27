@@ -34,11 +34,25 @@ nav ul{list-style:none;margin:0 auto;padding:0 clamp(20px,5vw,48px);max-width:98
 nav a{font:500 1rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);text-decoration:none;padding:.4rem 0;border-bottom:2px solid transparent}
 nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent);outline:none}
 .block{max-width:980px;margin:0 auto;padding:clamp(40px,8vw,88px) clamp(20px,5vw,48px);scroll-margin-top:4rem}
-.block>h2{font-size:1.6rem;margin-bottom:1.5rem}
-.project{padding:1.1rem 0;border-top:1px solid var(--soft);max-width:60ch}
-.project h3{font:700 1.2rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 .25rem}
-.project p,.contact p{margin:0;color:var(--muted)}
 .contact p{max-width:60ch;margin-bottom:.5rem;color:var(--ink)}
+.skill{padding:1.1rem 0;border-top:1px solid var(--soft);max-width:60ch}
+.skill-head{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin-bottom:.55rem}
+.skill-head h3{font:700 1.1rem "Bricolage Grotesque",system-ui,sans-serif;margin:0}
+.skill-head span{flex:none;font:500 .8rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);letter-spacing:.02em;text-transform:uppercase}
+.bar{height:7px;border-radius:999px;background:var(--soft);overflow:hidden}
+.bar i{display:block;height:100%;width:var(--fill);background:var(--accent);border-radius:999px}
+.cform{max-width:60ch;margin-top:1.75rem;display:grid;gap:1.1rem}
+.cform .field label{display:block;font:500 .85rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);margin-bottom:.35rem}
+.cform input,.cform textarea{width:100%;padding:.65rem .8rem;font:1rem/1.5 "Source Serif 4",Georgia,serif;color:var(--ink);background:var(--soft);border:1px solid transparent;border-radius:8px}
+.cform textarea{resize:vertical;min-height:120px}
+.cform input:focus-visible,.cform textarea:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.cform .err{display:none;margin-top:.35rem;color:#D14343;font:500 .8rem "Bricolage Grotesque",system-ui,sans-serif}
+.cform .field.invalid .err{display:block}
+.cform .field.invalid input,.cform .field.invalid textarea{outline:2px solid #D14343}
+.cform button{justify-self:start;font:700 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--onaccent);background:var(--accent);border:0;border-radius:999px;padding:.8rem 1.7rem;cursor:pointer}
+.cform button:hover{opacity:.88}
+.cform-status{margin:0;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+.cform-status.success{color:var(--accent)}
 .links{list-style:none;margin:0 0 1.5rem;padding:0}
 .links li{display:flex;gap:1rem;align-items:baseline;padding:.7rem 0;border-top:1px solid var(--soft);max-width:60ch}
 .links span{flex:0 0 5.5rem;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
@@ -59,7 +73,8 @@ footer a{color:var(--muted)}
 <nav aria-label="Main">
   <ul>
     <li><a href="#home">Home</a></li>
-    <li><a href="#projects">Projects</a></li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
@@ -81,13 +96,34 @@ footer a{color:var(--muted)}
     
   </section>
 </main>
-<section class="block" id="projects">
-  <h2>Projects</h2>
-  <div class="project"><h3 contenteditable="true" spellcheck="false" data-k="p1t">Personal portfolio website</h3><p contenteditable="true" data-k="p1d">A responsive site built with HTML, CSS and JavaScript to showcase my work.</p></div>
-  <img src="C:\Users\KIDI\OneDrive\Desktop\My Portfolio\Screenshot 2026-09-25 194327.png" alt="" width="300" height="300">
-  <div class="project"><h3 contenteditable="true" spellcheck="false" data-k="p2t">Anigame</h3><p contenteditable="true" data-k="p2d">Anigame is an extension that limits the amount of time spent playing video games on the web browser.</p></div>
-  <img src="C:\Users\KIDI\OneDrive\Desktop\My Portfolio\Screenshot 2026-09-25 200949.png" alt="" width="300" height="300">
- 
+
+<section class="block" id="skills">
+  <h2>Skills</h2>
+
+  <div class="skill">
+    <div class="skill-head"><h3>Frontend Development (HTML)</h3><span>Still Learning</span></div>
+    <div class="bar"><i style="--fill:25%"></i></div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-head"><h3>Offensive Security</h3><span>Still Learning</span></div>
+    <div class="bar"><i style="--fill:25%"></i></div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-head"><h3>Chess</h3><span>Advanced</span></div>
+    <div class="bar"><i style="--fill:85%"></i></div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-head"><h3>Video Editing</h3><span>Intermediate</span></div>
+    <div class="bar"><i style="--fill:60%"></i></div>
+  </div>
+
+  <div class="skill">
+    <div class="skill-head"><h3>Content Creation</h3><span>Intermediate</span></div>
+    <div class="bar"><i style="--fill:65%"></i></div>
+  </div>
 </section>
 <section class="block contact" id="contact">
   <h2>Contact</h2>
@@ -97,10 +133,29 @@ footer a{color:var(--muted)}
     <li><span>GitHub</span><a data-link="gh" href="https://github.com/kidihawi" target="_blank" rel="noopener">github.com/kidihawi</a></li>
     <li><span>LinkedIn</span><a data-link="li" href="https://linkedin.com/in/kidi-hawi-b3a26b3b9/" target="_blank" rel="noopener">linkedin.com/in/kidi-hawi-b3a26b3b9/</a></li>
   </ul>
-  
+
+  <form class="cform" id="contactForm" novalidate>
+    <div class="field">
+      <label for="cf-name">Name</label>
+      <input type="text" id="cf-name" name="name" autocomplete="name" required>
+      <span class="err" id="cf-name-err">Please enter your name.</span>
+    </div>
+    <div class="field">
+      <label for="cf-email">Email</label>
+      <input type="email" id="cf-email" name="email" autocomplete="email" required>
+      <span class="err" id="cf-email-err">Please enter a valid email address (e.g. name@example.com).</span>
+    </div>
+    <div class="field">
+      <label for="cf-message">Message</label>
+      <textarea id="cf-message" name="message" required></textarea>
+      <span class="err" id="cf-message-err">Please enter a message.</span>
+    </div>
+    <button type="submit">Send message</button>
+    <p class="cform-status" id="cformStatus" role="status" aria-live="polite"></p>
+  </form>
 </section>
 <footer>
-  <span>&copy; <span id="yr">2026 All Rights Reserved</span> <span id="fname"></span></span>
+  <span>&copy; <span id="yr">2026</span> <span id="fname">All Rights Reserved</span></span>
   <a href="#home">Back to top</a>
 </footer>
 <script>
@@ -124,14 +179,47 @@ footer a{color:var(--muted)}
   }
   Object.keys(defs).forEach(function(k){
     var inp=document.querySelector('[data-in="'+k+'"]');
-    inp.value=store["l_"+k]||defs[k];
+    if(inp){
+      inp.value=store["l_"+k]||defs[k];
+      inp.addEventListener("input",function(){store["l_"+k]=inp.value||defs[k];paint(k);save()});
+    }
     paint(k);
-    inp.addEventListener("input",function(){store["l_"+k]=inp.value||defs[k];paint(k);save()});
   });
   var nameEl=document.querySelector('[data-k="name"]'),fname=document.getElementById("fname");
-  function syncName(){fname.textContent=nameEl.textContent.trim()||"Your Name";document.title=fname.textContent+" | Portfolio"}
+  function syncName(){var n=nameEl.textContent.trim()||"Your Name";fname.textContent=n;document.title=n+" | Portfolio";img.alt="Portrait of "+n}
   syncName();nameEl.addEventListener("input",syncName);
   document.getElementById("yr").textContent=new Date().getFullYear();
+  var form=document.getElementById("contactForm");
+  if(form){
+    var status=document.getElementById("cformStatus");
+    var emailRe=/^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    var checks=[
+      ["cf-name",function(v){return v.trim().length>0}],
+      ["cf-email",function(v){return emailRe.test(v.trim())}],
+      ["cf-message",function(v){return v.trim().length>0}]
+    ];
+    form.addEventListener("submit",function(e){
+      e.preventDefault();
+      var ok=true,firstInvalid=null;
+      checks.forEach(function(pair){
+        var el=document.getElementById(pair[0]),field=el.closest(".field"),valid=pair[1](el.value);
+        field.classList.toggle("invalid",!valid);
+        el.setAttribute("aria-invalid",valid?"false":"true");
+        if(!valid){ok=false;if(!firstInvalid)firstInvalid=el}
+      });
+      if(!ok){
+        status.textContent="Please fix the highlighted fields.";
+        status.className="cform-status";
+        if(firstInvalid)firstInvalid.focus();
+        return;
+      }
+      var name=document.getElementById("cf-name").value.trim();
+      status.textContent="Thanks, "+name+"! Your message has been received \u2014 I'll get back to you soon.";
+      status.className="cform-status success";
+      form.reset();
+      document.querySelectorAll(".cform .field").forEach(function(f){f.classList.remove("invalid")});
+    });
+  }
   btn.addEventListener("click",function(){file.click()});
   file.addEventListener("change",function(){
     var f=file.files[0];if(!f)return;

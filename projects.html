@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Projects | Kidi Hawi</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#F3F5F9;--ink:#101A33;--muted:#4F5B78;--accent:#2F4BFF;--soft:#DDE3F3;--onaccent:#fff;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0E1424;--ink:#EEF1FA;--muted:#A3AECB;--accent:#7C90FF;--soft:#1E2846;--onaccent:#0E1424}}
+:root[data-theme="dark"]{--bg:#0E1424;--ink:#EEF1FA;--muted:#A3AECB;--accent:#7C90FF;--soft:#1E2846;--onaccent:#0E1424}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"Source Serif 4",Georgia,serif;line-height:1.65}
+h2{font:700 1.15rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 .6rem;padding-left:.75rem;border-left:4px solid var(--accent)}
+[contenteditable]:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:var(--bg);border-bottom:1px solid var(--soft)}
+nav ul{list-style:none;margin:0 auto;padding:0 clamp(20px,5vw,48px);max-width:980px;height:4rem;display:flex;align-items:center;gap:1.75rem}
+nav a{font:500 1rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);text-decoration:none;padding:.4rem 0;border-bottom:2px solid transparent}
+nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent);outline:none}
+nav a.current{color:var(--ink);border-color:var(--accent)}
+.block{max-width:980px;margin:0 auto;padding:clamp(40px,8vw,88px) clamp(20px,5vw,48px)}
+.block>h2{font-size:1.6rem;margin-bottom:1.5rem}
+.filters{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.5rem}
+.filter-btn{font:500 .85rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);background:var(--soft);border:1px solid transparent;border-radius:999px;padding:.45rem 1rem;cursor:pointer}
+.filter-btn:hover{color:var(--ink)}
+.filter-btn.active{background:var(--accent);color:var(--onaccent)}
+.filter-btn:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+.project.is-hidden{display:none}
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.25rem}
+.project{border:1px solid var(--soft);border-radius:14px;padding:1.5rem;display:flex;flex-direction:column;gap:.55rem;max-width:none}
+.project h3{font:700 1.15rem "Bricolage Grotesque",system-ui,sans-serif;margin:0}
+.project .desc{margin:0;color:var(--ink);font-size:.98rem}
+.project .tech{margin:0;font:500 .78rem "Bricolage Grotesque",system-ui,sans-serif;letter-spacing:.03em;text-transform:uppercase;color:var(--muted)}
+.project .plink{margin-top:auto;padding-top:.3rem;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--accent);text-decoration:none;text-underline-offset:4px}
+.project .plink:hover{color:var(--ink)}
+.project .plink.soon{color:var(--muted);text-decoration:none;cursor:default}
+footer{max-width:980px;margin:0 auto;padding:1.5rem clamp(20px,5vw,48px) 2.5rem;border-top:1px solid var(--soft);font:.9rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
+footer a{color:var(--muted)}
+</style>
+</head>
+<body>
+<nav aria-label="Main">
+  <ul>
+    <li><a href="portfolio.html">Home</a></li>
+    <li><a href="projects.html" class="current" aria-current="page">Projects</a></li>
+    <li><a href="portfolio.html">Skills</a></li>
+    <li><a href="portfolio.html">Contact</a></li>
+  </ul>
+</nav>
+
+<section class="block" id="projects">
+  <h2>Projects</h2>
+
+  <div class="filters" role="group" aria-label="Filter projects by category">
+    <button class="filter-btn active" data-filter="all" aria-pressed="true">All</button>
+    <button class="filter-btn" data-filter="web" aria-pressed="false">Web</button>
+    <button class="filter-btn" data-filter="extension" aria-pressed="false">Extension</button>
+    <button class="filter-btn" data-filter="planned" aria-pressed="false">Planned</button>
+  </div>
+
+  <div class="projects-grid">
+
+    <div class="project" data-category="web">
+      <h3 contenteditable="true" spellcheck="false" data-k="p1t">Personal portfolio website</h3>
+      <img src="Images/Screenshot 2026-09-25 194327.png" width="200" height="200">
+      <p class="desc" contenteditable="true" data-k="p1d">A responsive personal site built to showcase my profile, skills and projects, with editable content saved right in the browser.</p>
+      <p class="tech" contenteditable="true" data-k="p1tech">HTML &middot; CSS &middot; JavaScript</p>
+      <a class="plink" href="https://github.com/kidihawi/my-portfolio" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project" data-category="extension">
+      <h3 contenteditable="true" spellcheck="false" data-k="p2t">Anigame</h3>
+      <img src="Images/Screenshot 2026-09-25 200949.png" width="200" height="200">
+      <p class="desc" contenteditable="true" data-k="p2d">A browser extension that helps limit and track the amount of time spent playing video games online.</p>
+      <p class="tech" contenteditable="true" data-k="p2tech">JavaScript &middot; Browser Extension APIs</p>
+      <a class="plink" href="https://github.com/kidihawi/AniGame" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+    </div>
+
+    <div class="project" data-category="planned">
+      <h3 contenteditable="true" spellcheck="false" data-k="p3t">EcoHub</h3>
+      <img src="Images/pexels-bennett-tobias-889753-1797137.jpg" width="200" height="200">
+      <p class="desc" contenteditable="true" data-k="p3d">A planned platform for sharing and discovering simple, everyday ways to live more sustainably.</p>
+      <p class="tech" contenteditable="true" data-k="p3tech">HTML &middot; CSS &middot; JavaScript</p>
+      <span class="plink soon">Coming Soon</span>
+    </div>
+
+  </div>
+</section>
+
+<footer>
+  <span>&copy; <span id="yr"></span> <span id="fname"></span></span>
+  <a href="portfolio.html">Back to home</a>
+</footer>
+
+<script>
+(function(){
+  var store={};
+  try{store=JSON.parse(localStorage.getItem("portfolio")||"{}")}catch(e){}
+  function save(){try{localStorage.setItem("portfolio",JSON.stringify(store))}catch(e){}}
+
+  document.querySelectorAll("[data-k]").forEach(function(el){
+    var k=el.dataset.k;
+    if(store[k])el.textContent=store[k];
+    el.addEventListener("input",function(){store[k]=el.textContent;save()});
+  });
+
+  document.getElementById("fname").textContent=(store.name||"Kidi Hawi").trim()||"Kidi Hawi";
+  document.getElementById("yr").textContent=new Date().getFullYear();
+
+  var filterBtns=document.querySelectorAll(".filter-btn"),projectCards=document.querySelectorAll(".project");
+  filterBtns.forEach(function(btn){
+    btn.addEventListener("click",function(){
+      filterBtns.forEach(function(b){b.classList.remove("active");b.setAttribute("aria-pressed","false")});
+      btn.classList.add("active");btn.setAttribute("aria-pressed","true");
+      var f=btn.dataset.filter;
+      projectCards.forEach(function(card){
+        card.classList.toggle("is-hidden",f!=="all"&&card.dataset.category!==f);
+      });
+    });
+  });
+})();
+</script>
+</body>
+</html>
