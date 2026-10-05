@@ -58,6 +58,19 @@ nav a:hover,nav a:focus-visible{color:var(--ink);border-color:var(--accent);outl
 .links a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
 footer{max-width:980px;margin:0 auto;padding:1.5rem clamp(20px,5vw,48px) 2.5rem;border-top:1px solid var(--soft);font:.9rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap}
 footer a{color:var(--muted)}
+.repo-list{list-style:none;margin:1.25rem 0 0;padding:0;max-width:60ch}
+.repo{padding:1rem 0;border-top:1px solid var(--soft)}
+.repo h3{font:700 1.1rem "Bricolage Grotesque",system-ui,sans-serif;margin:0 0 .25rem}
+.repo h3 a{color:var(--accent);text-underline-offset:4px}
+.repo h3 a:hover{color:var(--ink)}
+.repo h3 a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+.repo p{margin:0 0 .45rem;color:var(--ink)}
+.repo .meta{display:flex;flex-wrap:wrap;gap:.4rem 1.1rem;font:500 .85rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+.repo-status{margin:1rem 0 0;font:500 .95rem "Bricolage Grotesque",system-ui,sans-serif;color:var(--muted)}
+.repo-status button{font:inherit;color:var(--accent);background:none;border:0;padding:0;margin-left:.4rem;text-decoration:underline;text-underline-offset:4px;cursor:pointer}
+.repo-status button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+.repo-status:empty{display:none}
+@media (max-width:480px){nav ul{gap:1rem;overflow-x:auto}nav a{font-size:.9rem;white-space:nowrap}}
 @media (max-width:720px){main{grid-template-columns:1fr;min-height:0}.photo{max-width:300px}}
 </style>
 </head>
@@ -66,13 +79,14 @@ footer a{color:var(--muted)}
   <ul>
     <li><a href="#home">Home</a></li>
     <li><a href="projects.html">Projects</a></li>
+    <li><a href="#repos">GitHub</a></li>
     <li><a href="#skills">Skills</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </nav>
 <main id="home">
   <div class="photo has">
-    <img src="Images/image.jpeg" alt="Portrait of Kidi Hawi" onerror="this.parentNode.classList.remove('has')">
+    <img src="Images/image.jpeg" alt="Portrait of Kidi Hawi" loading="lazy" onerror="this.parentNode.classList.remove('has')">
     <svg viewBox="0 0 200 250" fill="currentColor" aria-hidden="true"><circle cx="100" cy="100" r="38" opacity=".55"/><path d="M28 250c0-52 32-84 72-84s72 32 72 84z" opacity=".55"/></svg>
   </div>
 
@@ -85,6 +99,13 @@ footer a{color:var(--muted)}
     </div>
   </section>
 </main>
+
+<section class="block" id="repos">
+  <h2>Latest on GitHub</h2>
+  <p style="max-width:60ch;margin:0">My most recently updated public repositories, loaded live from GitHub.</p>
+  <p class="repo-status" id="repoStatus" role="status" aria-live="polite">Loading repositories…</p>
+  <ul class="repo-list" id="repoList"></ul>
+</section>
 
 <section class="block" id="skills">
   <h2>Skills</h2>
@@ -144,7 +165,7 @@ footer a{color:var(--muted)}
   </form>
 </section>
 <footer>
-  <span>&copy; <span id="yr">2026</span> Kidi Hawi</span>
+  <span>&copy; <span id="yr">2026</span>All Rights Reserved</span>
   <a href="#home">Back to top</a>
 </footer>
 <script>
@@ -180,6 +201,49 @@ footer a{color:var(--muted)}
     status.textContent="Opening your email app, "+name+". Press send there to deliver your message.";
     status.className="cform-status success";
   });
+})();
+
+(function(){
+  var USER="kidihawi",list=document.getElementById("repoList"),status=document.getElementById("repoStatus");
+  function el(t,c,txt){var n=document.createElement(t);if(c)n.className=c;if(txt!=null)n.textContent=txt;return n}
+  function when(r){return r.pushed_at||r.updated_at}
+  function fail(msg){
+    status.textContent=msg;
+    var b=el("button",null,"Try again");b.type="button";b.onclick=load;status.appendChild(b);
+  }
+  function load(){
+    status.textContent="Loading repositories…";list.textContent="";
+    var ctl=new AbortController(),timer=setTimeout(function(){ctl.abort()},10000);
+    fetch("https://api.github.com/users/"+USER+"/repos?per_page=100&sort=pushed",{signal:ctl.signal,headers:{Accept:"application/vnd.github+json"}})
+      .then(function(r){
+        clearTimeout(timer);
+        if(r.status===403||r.status===429)throw new Error("limit");
+        if(!r.ok)throw new Error("http "+r.status);
+        return r.json();
+      })
+      .then(function(repos){
+        repos=repos.filter(function(r){return !r.fork})
+          .sort(function(a,b){return new Date(when(b))-new Date(when(a))}).slice(0,6);
+        if(!repos.length){status.textContent="No public repositories yet. Check back soon.";return}
+        status.textContent="";
+        repos.forEach(function(r){
+          var li=el("li","repo"),h=el("h3"),a=el("a",null,r.name);
+          a.href=r.html_url;a.target="_blank";a.rel="noopener";h.appendChild(a);
+          li.appendChild(h);
+          li.appendChild(el("p",null,r.description||"No description yet."));
+          var m=el("div","meta");
+          if(r.language)m.appendChild(el("span",null,r.language));
+          m.appendChild(el("span",null,"\u2605 "+r.stargazers_count));
+          m.appendChild(el("span",null,"Updated "+new Date(when(r)).toLocaleDateString(undefined,{year:"numeric",month:"short",day:"numeric"})));
+          li.appendChild(m);list.appendChild(li);
+        });
+      })
+      .catch(function(e){
+        clearTimeout(timer);
+        fail(e.message==="limit"?"GitHub's request limit was reached. Try again in a few minutes.":"Couldn't load repositories. Check your connection.");
+      });
+  }
+  load();
 })();
 </script>
 </body>
