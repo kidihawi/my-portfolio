@@ -10,6 +10,6 @@ Accessibility:100
 Best Practices:100
 SEO:91
 
-Live Deployment: https://github.com/kidihawi/my-portfolio.git
+Live Deployment: https://kidihawi.github.io/my-portfolio/
 
 
